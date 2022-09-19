@@ -51,14 +51,26 @@ namespace ConsoleUI
 
             //GetAllBrands(brandService);
 
-            brandService.Add(new Brand { BrandName="land rover"});
+            var result = carService.GetCarDetails();
+            if (result.Success==true)
+            {
+                foreach (var car in result.Data)
+                {
+                    Console.WriteLine(car.BrandName);
+                }
+            }
+            else
+            {
+                Console.WriteLine(result.Message);
+            }
 
+            
 
         }
 
         private static void GetAllBrands(IBrandService brandService)
         {
-            foreach (var brand in brandService.GetAll())
+            foreach (var brand in brandService.GetAll().Data)
             {
                 Console.WriteLine(brand.BrandName);
             }
@@ -66,7 +78,7 @@ namespace ConsoleUI
 
         private static void GetBrand(IBrandService brandService)
         {
-            Console.WriteLine((brandService.Get(1)).BrandName);
+            Console.WriteLine((brandService.Get(1)).Data.BrandName);
         }
 
         private static void BrandDelete(IBrandService brandService)
@@ -86,7 +98,7 @@ namespace ConsoleUI
 
         private static void GetAllColors(IColorService colorService)
         {
-            foreach (var color in colorService.GetAll())
+            foreach (var color in colorService.GetAll().Data)
             {
                 Console.WriteLine(color.ColorName);
             }
@@ -94,7 +106,7 @@ namespace ConsoleUI
 
         private static void GetColor(IColorService colorService)
         {
-            Console.WriteLine((colorService.Get(1)).ColorName);
+            Console.WriteLine((colorService.Get(1)).Data.ColorName);
         }
 
         private static void ColorDelete(IColorService colorService)
@@ -114,12 +126,12 @@ namespace ConsoleUI
 
         private static void GetCarById(ICarService carService)
         {
-            Console.WriteLine((carService.GetById(1)).Description);
+            Console.WriteLine((carService.GetById(1)).Data.Description);
         }
 
         private static void GetAll(ICarService carService)
         {
-            foreach (var car in carService.GetAll())
+            foreach (var car in carService.GetAll().Data)
             {
                 Console.WriteLine(car.Description);
             }
@@ -127,7 +139,7 @@ namespace ConsoleUI
 
         private static void GetCarsByBrandId(ICarService carService)
         {
-            foreach (var car in carService.GetCarsByBrandId(20))
+            foreach (var car in carService.GetCarsByBrandId(20).Data)
             {
                 Console.WriteLine(car.Description);
             }
