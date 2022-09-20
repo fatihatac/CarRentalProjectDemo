@@ -4,8 +4,11 @@ using DataAccess.Concrete;
 using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.InMemory;
 using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Linq;
+using System.Net.WebSockets;
+using System.Threading;
 
 namespace ConsoleUI
 {
@@ -19,45 +22,39 @@ namespace ConsoleUI
             ICustomerService customerService = new CustomerManager(new EfCustomerDal());
             IRentalService rentalService = new RentalManager(new EfRentalDal());
 
-            //customerService.Add(new Customer { UserId=7,CompanyName="Çatal A.Ş."});
-            //customerService.Update(new Customer { Id=3,CompanyName="Akdoğan Company"});
 
+            var result =  rentalService.GetRentalDetails();
 
+            foreach (var rentalDetail in result.Data)
+            {
+                Console.WriteLine("Kullanıcı Bilgileri : İsim :{0} ,{1} Email : {2}   ",rentalDetail.FirstName,rentalDetail.LastName,rentalDetail.Email);
+                Console.WriteLine("Araba bilgileri : Marka : {0}, Renk : {1}, Günlük fiyat : {2}, Özellik : {3}, Model yılı :  {4} ",rentalDetail.BrandName,rentalDetail.ColorName,rentalDetail.DailyPrice,rentalDetail.Description,rentalDetail.ModelYear);
+                Console.WriteLine("Kiralandığı tarih :  {0} ",rentalDetail.RentDate);
+                Console.WriteLine("----------------------------------------------------------------------------------");
+            }
 
-            rentalService.Add(new Rental { CarId = 1, CustomerId = 3, RentDate = DateTime.Now, ReturnDate = DateTime.Now });
-
-
-
-
+            //CustomerAdd(customerService);
+            //CustomerUpdate(customerService);
+            
+            //RentalAdd(rentalService);
+            
             //CarAdd(carService);
             //CarDelete(carService);
-
             //CarUpdate(carService);
-
             //GetAll(carService);
-
             //GetCarsByBrandId(carService);
-
             //GetCarById(carService);
 
             //ColorAdd(colorService);
             //ColorUpdate(colorService);
-
             //ColorDelete(colorService);
-
-
             //GetColor(colorService);
-
             //GetAllColors(colorService);
 
             //AddBrand(brandService);
             //UpdateBrand(brandService);
-
             //BrandDelete(brandService);
-
-
             //GetBrand(brandService);
-
             //GetAllBrands(brandService);
 
             //var result = carService.GetCarDetails();
@@ -75,6 +72,30 @@ namespace ConsoleUI
 
 
 
+        }
+
+        private static void CustomerUpdate(ICustomerService customerService)
+        {
+            customerService.Update(new Customer { Id = 3, CompanyName = "Akdoğan Company" });
+        }
+
+        private static void CustomerAdd(ICustomerService customerService)
+        {
+            customerService.Add(new Customer { UserId = 7, CompanyName = "Çatal A.Ş." });
+        }
+
+        private static void RentalAdd(IRentalService rentalService)
+        {
+            var result = rentalService.Add(new Rental { CarId = 1, CustomerId = 2, RentDate = DateTime.Now });
+
+            if (result.Success)
+            {
+                Console.WriteLine(result.Message);
+            }
+            else
+            {
+                Console.WriteLine(result.Message);
+            }
         }
 
         private static void GetAllBrands(IBrandService brandService)

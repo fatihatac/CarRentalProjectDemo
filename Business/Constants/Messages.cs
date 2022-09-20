@@ -15,5 +15,20 @@ namespace Business.Constants
         public static string MaintenanceTime = "Sistem bakımda";
         public static string CarRented = "Araba kiralandı";
         public static string CarIsAlreadyRented = "Araba çoktan kiralandığı için kiralanamaz";
+
+        public static string UserUpdated = "Kullanıcı güncellendi";
+        public static string UsersListed = "Kullanıcılar listelendi";
+        public static string UserDeleted = "Kullanıcı silindi";
+        public static string UserAdded = "Kullanıcı eklendi";
+        public static string UserListed = "Kullanıcı listelendi";
+
+
+        public static string CustomerListed = "Müşteri listelendi";
+        public static string CustomerUpdated = "Müşteri güncellendi";
+        public static string CustomersListed = "Müşteriler listelendi";
+        public static string CustomerDeleted = "Müşteri silindi ";
+        public static string CustomerAdded = "Müşteri eklendi ";
+
+        public static string CommonError = " İşlem başarısız";
     }
 }
