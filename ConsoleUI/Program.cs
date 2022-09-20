@@ -16,6 +16,15 @@ namespace ConsoleUI
             ICarService carService = new CarManager(new EfCarDal());
             IColorService colorService = new ColorManager(new EfColorDal());
             IBrandService brandService = new BrandManager(new EfBrandDal());
+            ICustomerService customerService = new CustomerManager(new EfCustomerDal());
+            IRentalService rentalService = new RentalManager(new EfRentalDal());
+
+            //customerService.Add(new Customer { UserId=7,CompanyName="Çatal A.Ş."});
+            //customerService.Update(new Customer { Id=3,CompanyName="Akdoğan Company"});
+
+
+
+            rentalService.Add(new Rental { CarId = 1, CustomerId = 3, RentDate = DateTime.Now, ReturnDate = DateTime.Now });
 
 
 
@@ -51,20 +60,20 @@ namespace ConsoleUI
 
             //GetAllBrands(brandService);
 
-            var result = carService.GetCarDetails();
-            if (result.Success==true)
-            {
-                foreach (var car in result.Data)
-                {
-                    Console.WriteLine(car.BrandName);
-                }
-            }
-            else
-            {
-                Console.WriteLine(result.Message);
-            }
+            //var result = carService.GetCarDetails();
+            //if (result.Success==true)
+            //{
+            //    foreach (var car in result.Data)
+            //    {
+            //        Console.WriteLine(car.BrandName);
+            //    }
+            //}
+            //else
+            //{
+            //    Console.WriteLine(result.Message);
+            //}
 
-            
+
 
         }
 
@@ -83,12 +92,12 @@ namespace ConsoleUI
 
         private static void BrandDelete(IBrandService brandService)
         {
-            brandService.Delete(new Brand { BrandId = 1016 });
+            brandService.Delete(new Brand { Id = 1016 });
         }
 
         private static void UpdateBrand(IBrandService brandService)
         {
-            brandService.Update(new Brand { BrandId = 1016, BrandName = "Kartal" });
+            brandService.Update(new Brand { Id = 1016, BrandName = "Kartal" });
         }
 
         private static void AddBrand(IBrandService brandService)
@@ -111,12 +120,12 @@ namespace ConsoleUI
 
         private static void ColorDelete(IColorService colorService)
         {
-            colorService.Delete(new Color { ColorId = 1002 });
+            colorService.Delete(new Color { Id = 1002 });
         }
 
         private static void ColorUpdate(IColorService colorService)
         {
-            colorService.Update(new Color { ColorId = 1002, ColorName = "Morcivert" });
+            colorService.Update(new Color { Id = 1002, ColorName = "Morcivert" });
         }
 
         private static void ColorAdd(IColorService colorService)
@@ -147,12 +156,12 @@ namespace ConsoleUI
 
         private static void CarUpdate(ICarService carService)
         {
-            carService.Update(new Car { CarId = 11, BrandId = 19, ColorId = 5, DailyPrice = 500, Description = "spor araba 2 ", ModelYear = 2007 });
+            carService.Update(new Car { Id = 11, BrandId = 19, ColorId = 5, DailyPrice = 500, Description = "spor araba 2 ", ModelYear = 2007 });
         }
 
         private static void CarDelete(ICarService carService)
         {
-            carService.Delete(new Car { CarId = 1008 });
+            carService.Delete(new Car { Id = 1008 });
         }
 
         private static void CarAdd(ICarService carService)

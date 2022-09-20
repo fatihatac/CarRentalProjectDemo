@@ -31,7 +31,7 @@ namespace Business.Concrete
 
         public IDataResult<Color> Get(int id)
         {
-            return new SuccessDataResult<Color>(_efColorDal.GetById(c => c.ColorId == id));
+            return new SuccessDataResult<Color>(_efColorDal.GetById(c => c.Id == id));
         }
 
         public IDataResult<List<Color>> GetAll()
