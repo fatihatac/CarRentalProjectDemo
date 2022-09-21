@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using Core.Utilities.Results;
+using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
 using System;
@@ -10,38 +11,38 @@ namespace Business.Concrete
 {
     public class BrandManager : IBrandService
     {
-        EfBrandDal _efBrandDal;
+        IBrandDal _brandDal;
 
-        public BrandManager(EfBrandDal efBrandDal)
+        public BrandManager(IBrandDal brandDal)
         {
-            _efBrandDal = efBrandDal;
+            _brandDal = brandDal;
         }
 
         public IResult Add(Brand brand)
         {
-            _efBrandDal.Add(brand);
+            _brandDal.Add(brand);
             return new SuccessResult();
         }
 
         public IResult Delete(Brand brand)
         {
-            _efBrandDal.Delete(brand);
+            _brandDal.Delete(brand);
             return new SuccessResult();
         }
 
         public IDataResult<Brand> Get(int id)
         {
-            return new SuccessDataResult<Brand>(_efBrandDal.GetById(b => b.Id == id));
+            return new SuccessDataResult<Brand>(_brandDal.GetById(b => b.Id == id));
         }
 
         public IDataResult<List<Brand>> GetAll()
         {
-            return new SuccessDataResult<List<Brand>>(_efBrandDal.GetAll()) ;
+            return new SuccessDataResult<List<Brand>>(_brandDal.GetAll()) ;
         }
 
         public IResult Update(Brand brand)
         {
-            _efBrandDal.Update(brand);
+            _brandDal.Update(brand);
             return new SuccessResult();
         }
     }
