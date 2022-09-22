@@ -23,21 +23,18 @@ namespace ConsoleUI
             IRentalService rentalService = new RentalManager(new EfRentalDal());
 
 
-            var result =  rentalService.GetRentalDetails();
+            var result =  brandService.Add(new Brand { BrandName = "Toyota" });
 
-            foreach (var rentalDetail in result.Data)
-            {
-                Console.WriteLine("Kullanıcı Bilgileri : İsim :{0} ,{1} Email : {2}   ",rentalDetail.FirstName,rentalDetail.LastName,rentalDetail.Email);
-                Console.WriteLine("Araba bilgileri : Marka : {0}, Renk : {1}, Günlük fiyat : {2}, Özellik : {3}, Model yılı :  {4} ",rentalDetail.BrandName,rentalDetail.ColorName,rentalDetail.DailyPrice,rentalDetail.Description,rentalDetail.ModelYear);
-                Console.WriteLine("Kiralandığı tarih :  {0} ",rentalDetail.RentDate);
-                Console.WriteLine("----------------------------------------------------------------------------------");
-            }
+            Console.WriteLine(result.Message);
+
+
+            //GetRentalDetails(brandService, rentalService);
 
             //CustomerAdd(customerService);
             //CustomerUpdate(customerService);
-            
+
             //RentalAdd(rentalService);
-            
+
             //CarAdd(carService);
             //CarDelete(carService);
             //CarUpdate(carService);
@@ -71,6 +68,20 @@ namespace ConsoleUI
             //}
 
 
+
+        }
+
+        private static void GetRentalDetails(IBrandService brandService, IRentalService rentalService)
+        {
+            var result = rentalService.GetRentalDetails();
+
+            foreach (var rentalDetail in result.Data)
+            {
+                Console.WriteLine("Kullanıcı Bilgileri : İsim :{0} ,{1} Email : {2}   ", rentalDetail.FirstName, rentalDetail.LastName, rentalDetail.Email);
+                Console.WriteLine("Araba bilgileri : Marka : {0}, Renk : {1}, Günlük fiyat : {2}, Özellik : {3}, Model yılı :  {4} ", rentalDetail.BrandName, rentalDetail.ColorName, rentalDetail.DailyPrice, rentalDetail.Description, rentalDetail.ModelYear);
+                Console.WriteLine("Kiralandığı tarih :  {0} ", rentalDetail.RentDate);
+                Console.WriteLine("----------------------------------------------------------------------------------");
+            }
 
         }
 

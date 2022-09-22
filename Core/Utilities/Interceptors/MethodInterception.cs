@@ -32,7 +32,6 @@ namespace Core.Utilities.Interceptors
             }
             OnAfter(invocation);
         }
-        var result = DateTime.Now.Year;
     }
 }
 

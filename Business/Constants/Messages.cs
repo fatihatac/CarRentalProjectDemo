@@ -32,5 +32,7 @@ namespace Business.Constants
         public static string CustomerAdded = "Müşteri eklendi ";
 
         public static string CommonError = " İşlem başarısız";
+        public static string BrandNameExist = "Marka ismi zaten var";
+        public static string BrandAdded = "Marka eklendi";
     }
 }
