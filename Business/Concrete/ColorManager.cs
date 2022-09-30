@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.Constants;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results;
@@ -7,6 +8,7 @@ using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Business.Concrete
@@ -47,6 +49,16 @@ namespace Business.Concrete
         public IResult Update(Color color)
         {
             _colorDal.Update(color);
+            return new SuccessResult();
+        }
+
+        private IResult CheckIfColorNameExist(string colorName)
+        {
+            var result = _colorDal.GetAll(p =>p.ColorName==colorName).Any();
+            if (result)
+            {
+                return new ErrorResult(Messages.ColorNameExist);
+            }
             return new SuccessResult();
         }
     }

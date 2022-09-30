@@ -23,9 +23,9 @@ namespace ConsoleUI
             IRentalService rentalService = new RentalManager(new EfRentalDal());
 
 
-            var result =  brandService.Add(new Brand { BrandName = "Toyota" });
+            //var result =  brandService.Add(new Brand { BrandName = "Toyota" });
 
-            Console.WriteLine(result.Message);
+            //Console.WriteLine(result.Message);
 
 
             //GetRentalDetails(brandService, rentalService);
@@ -33,7 +33,7 @@ namespace ConsoleUI
             //CustomerAdd(customerService);
             //CustomerUpdate(customerService);
 
-            //RentalAdd(rentalService);
+            RentalAdd(rentalService);
 
             //CarAdd(carService);
             //CarDelete(carService);
@@ -97,7 +97,7 @@ namespace ConsoleUI
 
         private static void RentalAdd(IRentalService rentalService)
         {
-            var result = rentalService.Add(new Rental { CarId = 1, CustomerId = 2, RentDate = DateTime.Now });
+            var result = rentalService.Add(new Rental { CarId = 5, CustomerId = 2, RentDate = DateTime.Now });
 
             if (result.Success)
             {

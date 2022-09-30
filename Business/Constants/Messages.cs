@@ -34,5 +34,12 @@ namespace Business.Constants
         public static string CommonError = " İşlem başarısız";
         public static string BrandNameExist = "Marka ismi zaten var";
         public static string BrandAdded = "Marka eklendi";
+        public static string BrandUpdated = "Marka güncellendi";
+        public static string ColorNameExist = "Renk zaten var";
+        public static string EmailExist = "Email hesabı daha önce kullanılmış";
+        internal static string CarImageDeleted;
+        internal static string CarImageAdded;
+        internal static string CarImageLimitExceeded;
+        internal static string CarImageIsNotExist;
     }
 }

@@ -56,8 +56,16 @@ namespace Business.Concrete
         [ValidationAspect(typeof(BrandValidator))]
         public IResult Update(Brand brand)
         {
-            _brandDal.Update(brand);
-            return new SuccessResult();
+            IResult result = BusinessRules.Run(CheckIfBrandNameExist(brand.BrandName));
+
+            if (result == null)
+            {
+                _brandDal.Update(brand);
+                return new SuccessResult(Messages.BrandUpdated);
+            }
+            return result;
+
+            
         }
 
         private IResult CheckIfBrandNameExist(string brandName)

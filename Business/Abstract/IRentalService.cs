@@ -16,5 +16,8 @@ namespace Business.Abstract
 
         IDataResult<Rental> GetById(int id);
         IDataResult<List<RentalDetailDto>> GetRentalDetails();
+
+
+
     }
 }
