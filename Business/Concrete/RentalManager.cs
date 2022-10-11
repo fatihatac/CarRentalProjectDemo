@@ -57,7 +57,7 @@ namespace Business.Concrete
 
         public IDataResult<Rental> GetById(int id)
         {
-            return new SuccessDataResult<Rental>(_rentalDal.GetById(r => r.Id == id));
+            return new SuccessDataResult<Rental>(_rentalDal.Get(r => r.Id == id));
         }
 
         public IDataResult<List<RentalDetailDto>> GetRentalDetails()
@@ -67,7 +67,7 @@ namespace Business.Concrete
 
         private IResult IsCarAlreadyRented(int cadId)
         {
-            var result = _rentalDal.GetById(p => p.CarId == cadId && p.ReturnDate == null);
+            var result = _rentalDal.Get(p => p.CarId == cadId && p.ReturnDate == null);
             if (result == null)
             {
                 return new SuccessResult();

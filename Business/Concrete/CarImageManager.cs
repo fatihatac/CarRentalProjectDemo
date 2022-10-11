@@ -36,21 +36,21 @@ namespace Business.Concrete
             carImage.ImagePath = _fileHelper.Upload(file, PathConstants.ImagesPath);
             carImage.Date = DateTime.Now;
             _carImageDal.Add(carImage);
-            return new SuccessResult("Resim başarıyla yüklendi");
+            return new SuccessResult(Messages.CarImageAdded);
         }
 
         public IResult Delete(CarImage carImage)
         {
             _fileHelper.Delete(PathConstants.ImagesPath + carImage.ImagePath);
             _carImageDal.Delete(carImage);
-            return new SuccessResult();
+            return new SuccessResult(Messages.CarImageDeleted);
         }
         public IResult Update(IFormFile file, CarImage carImage)
         {
             carImage.ImagePath = _fileHelper.Update(file, PathConstants.ImagesPath + carImage.ImagePath, PathConstants.ImagesPath);
             carImage.Date = DateTime.Now;
             _carImageDal.Update(carImage);
-            return new SuccessResult();
+            return new SuccessResult(Messages.CarImageUpdated);
         }
 
         public IDataResult<List<CarImage>> GetByCarId(int carId)
@@ -65,7 +65,7 @@ namespace Business.Concrete
 
         public IDataResult<CarImage> GetByImageId(int imageId)
         {
-            return new SuccessDataResult<CarImage>(_carImageDal.GetById(c => c.Id == imageId));
+            return new SuccessDataResult<CarImage>(_carImageDal.Get(c => c.Id == imageId));
         }
 
         public IDataResult<List<CarImage>> GetAll()

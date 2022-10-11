@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Core.Entities.Concrete;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -37,9 +38,16 @@ namespace Business.Constants
         public static string BrandUpdated = "Marka güncellendi";
         public static string ColorNameExist = "Renk zaten var";
         public static string EmailExist = "Email hesabı daha önce kullanılmış";
-        internal static string CarImageDeleted;
-        internal static string CarImageAdded;
-        internal static string CarImageLimitExceeded;
-        internal static string CarImageIsNotExist;
+        public static string CarImageDeleted = "Araba resmi silindi";
+        public static string CarImageAdded = " Araba resmi eklendi ";
+        public static string CarImageLimitExceeded = "Araba resmi limitine ulaşıldı";
+        public static string CarImageIsNotExist = "Araba resmi yok";
+        public static string UserNotFound = "Kullanıcı bulunamadı";
+        public static string PasswordError = "Şifre hatalı";
+        public static string SuccesfulLogin = "Giriş başarılı";
+        public static string UserAlreadyExist = "Kullanıcı zaten mevcut";
+        public static string UserRegistered = "Kullanıcı kaydı başarılı";
+        public static string AccessTokenCreated = "Access token başarıyla oluşturuldu";
+        public static string CarImageUpdated = "Araba resmi güncellendi";
     }
 }
